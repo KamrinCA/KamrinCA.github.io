@@ -1,1 +1,12 @@
-/* Custom css goes here */
+body.bg-image {
+    background-image: url('../Images/bg-home.jpg');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+}
+
+td.spacing {
+
+    padding-left: 15px;
+
+}

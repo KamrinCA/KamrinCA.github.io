@@ -1,9 +1,9 @@
 {
-  "name": "ice-3",
+  "name": "LAB1",
   "version": "1.0.0",
-  "description": "Repo for WEBD6201-W2022 ICE-3",
+  "description": "Repo for WEBD6201-W2022 LAB1",
   "main": "index.js",
-  "author": "Kamrin Aubin",
+  "author": "Chris Lapp-Benjamin & Kamrin Aubin",
   "license": "MIT",
   "dependencies": {
     "@fortawesome/fontawesome-free": "^5.15.4",

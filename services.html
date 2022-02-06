@@ -4,17 +4,18 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Our Services</title>
+    <title>Services</title>
+
     <!-- CSS Section -->
     <link rel="stylesheet" href="./node_modules/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="./node_modules/@fortawesome/fontawesome-free/css/all.min.css">
     <link rel="stylesheet" href="./Content/app.css">
 </head>
-<body>
+<body class="bg-image">
     <header>
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
             <div class="container-fluid">
-              <a class="navbar-brand" href="index.html"><i class="fas fa-spider"></i> WEBD6201</a>
+              <a class="navbar-brand" href="index.html">Lab 1 - WEBD6201</a>
               <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
               </button>
@@ -24,16 +25,16 @@
                     <a class="nav-link" href="index.html"><i class="fas fa-home"></i> Home</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="about.html"><i class="fas fa-info"></i> About Us</a>
+                    <a class="nav-link" href="products.html"><i class="fas fa-th"></i> Products</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="projects.html"><i class="fas fa-project-diagram"></i> Projects</a>
+                    <a class="nav-link active" aria-current="page" href="services.html"><i class="fas fa-bell"></i> Services</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="services.html"><i class="fas fa-map-signs"></i> Services</a>
+                    <a class="nav-link" href="about.html"><i class="fas fa-info-circle"></i> About Us</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="contact.html"><i class="fas fa-envelope"></i> Contact Us</a>
+                    <a class="nav-link" href="contact.html"><i class="fas fa-phone-alt"></i> Contact Us</a>
                   </li>
                 </ul>
               </div>
@@ -41,11 +42,42 @@
           </nav>
     </header>
 
-    <div class="container">
-        <h1>Welcome to Our Services</i></h1>
-    </div>
+    <main class="container">
+      <h1 class="mb-3 mt-2"></h1>
+      <table>
+        <tbody>
+          <tr>
+            <td>
+              <img class="img-thumbnail mt-5" width="800" src="./Images/img-service-netd.JPG" alt="">
+            </td>
+            <td class="align-baseline spacing" width="400">
+              <h3 id="heading1" class="mt-5 mb-3"></h3>
+              <p id="service1"></p>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <img class="img-thumbnail mt-5" width="800" src="./Images/img-service-webd.JPG" alt="">
+            </td>
+            <td class="align-baseline spacing">      
+              <h3 id="heading2" class="mt-5 mb-3" width="400"></h3>
+              <p id="service2"></p>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <img class="img-thumbnail mt-5" width="800" src="./Images/img-service-sysa.jpg" alt="">
+            </td>
+            <td class="align-baseline spacing">      
+              <h3 id="heading3" class="mt-5 mb-3" width="400"></h3>
+              <p id="service3"></p>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </main>
 
-    <!-- Scripting Section -->
+    <!-- Scripts Section -->
     <script src="./node_modules/jquery/dist/jquery.min.js"></script>
     <script src="./node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
     <script src="./Scripts/app.js"></script>
