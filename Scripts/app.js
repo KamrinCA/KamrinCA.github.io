@@ -388,6 +388,8 @@
     {
         console.log("App Started!!");
 
+        AjaxRequest("GET", "header.html", LoadHeader);
+
         switch(document.title)
         {
             // Finite State Machine
@@ -427,8 +429,6 @@
                 DisplayRegisterPage();
                 break;
         }
-
-        AjaxRequest("GET", "header.html", LoadHeader);
 
     }
 
