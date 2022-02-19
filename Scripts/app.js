@@ -388,7 +388,7 @@
     {
         console.log("App Started!!");
 
-        AjaxRequest("GET", "header.html", LoadHeader);
+        AjaxRequest("get", "header.html", LoadHeader);
 
         switch(document.title)
         {
