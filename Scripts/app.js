@@ -1,9 +1,13 @@
-// IIFE -- Immediately Invoked Function Expression
-// AKA anonymous self-executing function
+/* Authors: Chris Lapp-Benjamin (100802074) & Kamrin Aubin (100792839)
+ * Date Completed: February 27th, 2022
+ * Description: app.js file. Contains multiple functions that handle DOM Manipulation
+ *              through the use of JQuery and Javascript. This is required for Lab 2
+ *              and the app.js is based off of ICE 6's.
+ *
+ */
 "use strict";
 (function()
 {
-
     /**
      * This function uses AJAX to open a connection to the url and returns data to the callback function
      *
@@ -44,13 +48,13 @@
         CheckLogin();
     }
 
+    /**
+     * Handles the functionality for the home page
+     */
     function DisplayHome()
     {
         console.log("Home Page");
 
-        // let AboutUsButton = document.getElementById("AboutUsButton");
-
-        // 1) Fattest -> jQuery way - Returns an array (collection) of elements that match the query and attaches a click event 
         $("#AboutUsButton").on("click", () =>
         {
             location.href = "about.html";
@@ -58,7 +62,6 @@
 
         $("main").append(`<p id="MainParagraph" class="mt-3">This is the Main Paragraph</p>`);
 
-        // Article.innerHTML = ArticleParagraph;
         $("body").append(`
         <article class="container">
             <p id="ArticleParagraph" class="mt-3">This is the Article Paragraph</p>
@@ -66,16 +69,25 @@
             
     }
 
+    /**
+     * Handles the functionality for the About page
+     */
     function DisplayAboutPage()
     {
         console.log("About Us Page");
     }
 
+    /**
+     * Handles the functionality for the Projects page
+     */
     function DisplayProjectsPage()
     {
         console.log(" Our Projects Page");
     }
 
+    /**
+     * Handles the functionality for the Services page
+     */
     function DisplayServicesPage()
     {
         console.log("Our Services Page");
@@ -99,43 +111,58 @@
         }
     }
 
-    /**
+   /**
      * This method validates an input text field in the form and displays
      * an error in the message area
      *
+     * @param {string} div_error_id
      * @param {string} input_field_ID
      * @param {regExp} regular_expression
      * @param {string} error_message
      */
-    function ValidateField(input_field_ID, regular_expression, error_message)
+    function ValidateField(div_error_id, input_field_ID, regular_expression, error_message)
     {
-        let messageArea = $("#messageArea").hide();
+        // Obtaiins the error message area using the id
+        let messageArea = $("#" + div_error_id).hide();
 
+        // Onces the input field loses its focus...
         $("#" + input_field_ID).on("blur", function()
         {
+            // Obtain the value
             let inputFieldText = $(this).val();
 
+            // If the value does not conform to the regular expression
             if (!regular_expression.test(inputFieldText))
             {
                 // Triggers a focus and select event on the input field
                 $(this).trigger("focus").trigger("select");
-                // Shows the message area, adds an alert danger class, and prompts the user the input field is invalid
+                // Show the message area, ads an alert danger class, and prompts the user the input field is invalid
                 messageArea.show().addClass("alert alert-danger").text(error_message);
             }
+            // Field is valid
             else
             {
+                // Hide the message area
                 messageArea.removeAttr("class").hide();
             }
         });
     }
 
+    /**
+     * Uses the ValidateField to perform basic input validation for the contact form
+     *
+     */
     function ContactFormValidation()
     {
-        ValidateField("fullName", /^([A-Z][a-z]{1,3}\.?\s)?([A-Z][a-z]{1,})+([\s,-]([A-Z][a-z]{1,}))*$/, "Please enter a valid Full Name.");
-        ValidateField("contactNumber", /^(\+\d{1,3}[\s-.])?\(?\d{3}\)?[\s-.]?\d{3}[\s-.]?\d{4}$/, "Please enter a valid Contact Number.");
-        ValidateField("emailAddress", /^[a-zA-z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-z]{2,10}$/, "Please enter a valid Email Address.");
+        ValidateField("messageArea" ,"fullName", /^([A-Z][a-z]{1,3}\.?\s)?([A-Z][a-z]{1,})+([\s,-]([A-Z][a-z]{1,}))*$/, "Please enter a valid Full Name.");
+        ValidateField("messageArea", "contactNumber", /^(\+\d{1,3}[\s-.])?\(?\d{3}\)?[\s-.]?\d{3}[\s-.]?\d{4}$/, "Please enter a valid Contact Number.");
+        ValidateField("messageArea", "emailAddress", /^[a-zA-z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-z]{2,10}$/, "Please enter a valid Email Address.");
     }
 
+    
+    /**
+     * Handles the functionality for the Contact page
+     */
     function DisplayContactPage()
     {
         ContactFormValidation();
@@ -145,11 +172,6 @@
         let sendButton = document.getElementById("sendButton");
         let subscribeCheckbox = document.getElementById("subscribeCheckbox");
 
-        // localStorage.setItem("Test1", "This is my test");
-        // console.log(localStorage.getItem("Test1"));
-        // localStorage.removeItem("Test1");
-        // console.log("length: " + localStorage.length);
-
         sendButton.addEventListener("click", function(event)
         {
             if (subscribeCheckbox.checked)
@@ -158,7 +180,10 @@
             }
         });
     }
-
+    
+    /**
+     * Handles the functionality for the Contact List page
+     */
     function DisplayContactListPage()
     {
         console.log("Contact-List Page");
@@ -223,6 +248,9 @@
         }
     }
 
+    /**
+     * Handles the functionality for the Edit page
+     */
     function DisplayEditPage()
     {
         console.log("Edit Page");
@@ -296,9 +324,13 @@
         }
     }
 
+    /**
+     * REQUIRED FOR LAB 2
+     * Handles the functionality for the login page
+     *
+     */
     function DisplayLoginPage()
     {
-        console.log("Login Page");
         let messageArea = $("#messageArea");
         messageArea.hide();
 
@@ -309,7 +341,7 @@
             // create an empty user object
             let newUser = new core.User();
 
-            // use jQuery shortcut to load the users.json file
+            // uses jQuery shortcut to load the users.json file
             $.get("./Data/users.json", function(data){
 
                 // for every user in the users.json file, loop
@@ -346,6 +378,7 @@
             });
         });
 
+        // Detects when the cancel button is clicked
         $("#cancelButton").on("click", function()
         {
             // clear the login form
@@ -356,19 +389,38 @@
         });
     }
 
+    /**
+     * REQUIRED FOR LAB 2
+     * Checks if the user is logged in and changes the site accordingly
+     *
+     */
     function CheckLogin()
     {
         // if user is logged in, then...
         if (sessionStorage.getItem("user"))
         {
+            // Obtains the user from session storage and splits the CSV into an array
+            let user = sessionStorage.getItem("user").split(",");
+            // Obtains the username from the array
+            let username = user[3];
+
+            // Creates an span element, sets it's class and inner html
+            let usernameDisplay = document.createElement("span");
+            usernameDisplay.setAttribute("class", "navbar-text");
+            usernameDisplay.innerHTML = `<i class="fas fa-user"></i> ${username}`;
+
+            // Finds the 5th list item and places the username span element after
+            $("ul").find("li")[4].after(usernameDisplay);
+
             // swap out the login link with logout
             $("#login").html(
                 `<a id="logout" class="nav-link" href="#"><i class="fas fa-sign-out-alt"></i> Logout</a>`
             );
 
+            // If the logout button is clicked
             $("#logout").on("click", function()
             {
-                // perform logout
+                // perform logout by clearing session storage
                 sessionStorage.clear();
 
                 // redirect back to login page
@@ -378,17 +430,82 @@
         }
     }
 
+    /**
+     * REQUIRED FOR LAB 2
+     * Deals with register form's validation with the use of regular expressions.
+     * Will display error messages associated with each field
+     *
+     */
+    function RegisterFormValidation()
+    {
+        ValidateField("ErrorMessage", "firstName", /^([A-Z][a-z]{1,})$/, "Please enter a valid First Name");
+        ValidateField("ErrorMessage", "lastName", /^([A-Z][a-z]{1,})$/, "Please enter a valid Last Name");
+        ValidateField("ErrorMessage", "emailAddress", /^[a-zA-z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-z]{2,10}$/, "Please enter a valid Email Address.");
+        ValidateField("ErrorMessage", "password", /^[a-zA-Z0-9!@#$%^&*._-]{6,}$/, "Your password must be at least 6 characters long.");
+        ValidateField("ErrorMessage", "confirmPassword", /^[a-zA-Z0-9!@#$%^&*._-]{6,}$/, "Your confirm password must be at least 6 characters long.");
+    }
+
+    /**
+     * REQUIRED FOR LAB 2
+     * Handles all the functionality for the Register page
+     *
+     */
     function DisplayRegisterPage()
     {
-        console.log("Register Page");
+        // Creates the div ErrorMessage element, places after the h1 tag
+        let errorMessage = document.createElement("div");
+        errorMessage.setAttribute("id", "ErrorMessage");
+        $("h1").after(errorMessage);
+
+        // Detects if any input is invalid
+        RegisterFormValidation();
+
+        // Stores the register button
+        let registerButton = $("#registerButton");
+
+        // Detects when the register button is clicked
+        registerButton.on("click", function(event)
+        {
+            // Prevents the register button's default behaviour
+            event.preventDefault();
+
+            // Obtains all input fields text to create User
+            let firstName = $("#firstName").val();
+            let lastName = $("#lastName").val();
+            let emailAddress = $("#emailAddress").val();
+            let displayName = (firstName + lastName).toLowerCase();
+            let password = $("#password").val();
+            let confPassword = $("#confirmPassword").val();
+            
+            // Checks if any field is empty
+            if (firstName == "" || lastName == "" || emailAddress == "" || password == "" || confPassword == "")
+            {
+                let errorDiv = $("#ErrorMessage");
+                errorDiv.show().addClass("alert alert-danger").text("All fields are required and cannot be empty.");
+            }
+            // Checks if the password are not the same
+            else if (password != confPassword)
+            {
+                let errorDiv = $("#ErrorMessage");
+                errorDiv.show().addClass("alert alert-danger").text("Your password and confirm password are not the same.");
+            }
+            // Else, all input is valid
+            else
+            {
+                // Creates the new user and displays it using the toString method (hides password) to the console log
+                let displayUser = new core.User(firstName, lastName, emailAddress, displayName, password);
+                console.log(displayUser.toString());
+
+                // Clears the form
+                document.forms[0].reset();       
+            }
+        });
     }
 
     // Named function option
     function Start() 
     {
         console.log("App Started!!");
-
-        AjaxRequest("get", "header.html", LoadHeader);
 
         switch(document.title)
         {
@@ -430,13 +547,9 @@
                 break;
         }
 
-    }
+        AjaxRequest("GET", "header.html", LoadHeader);
 
-    // Variable point to anonymous function - Keeping for my own reference
-    /*let Start = function()
-    {
-        console.log("App Started!");
-    } */
+    }
 
     window.addEventListener("load", Start);
 
